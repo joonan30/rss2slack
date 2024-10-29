@@ -1,0 +1,35 @@
+name: RSS to Slack
+
+on:
+  schedule:
+    # 매일 아침 9시에 실행 (UTC 기준이므로, 한국 시간(KST)으로 18시에 실행됨)
+    - cron: '0 9 * * *'
+
+jobs:
+  rss_to_slack:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 리포지토리 체크아웃
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      # Python 설치
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      # 필요한 라이브러리 설치
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install feedparser slack_sdk openai
+
+      # Python 스크립트 실행
+      - name: Run the RSS to Slack script
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python rss_to_slack.py
