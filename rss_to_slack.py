@@ -39,4 +39,4 @@ for feed_url in feed_urls:
     for entry in feed.entries[:5]:  # 피드에서 최대 5개 항목 요약
         summary = summarize_text(entry.summary)
         message = f"*{entry.title}*\n{summary}\n<{entry.link}>"
-        send_to_slack("#your-slack-channel", message)
+        send_to_slack("#paper_gpt", message)
