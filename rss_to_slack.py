@@ -8,18 +8,20 @@ import os
 openai.api_key = os.getenv("OPENAI_API_KEY")
 slack_token = os.getenv("SLACK_BOT_TOKEN")
 
+# 텍스트 요약 함수 수정
 def summarize_text(text):
-    response = openai.Completion.create(
-        model="gpt-4",
-        prompt=f"Summarize this: {text}",
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # 또는 사용 가능한 모델 ID로 변경
+        messages=[{"role": "user", "content": f"Summarize this: {text}"}],
         max_tokens=50
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content'].strip()
 
+# 슬랙 메시지 보내기 함수
 def send_to_slack(channel, message):
     client = WebClient(token=slack_token)
     try:
-        response = client.chat_postMessage(
+        client.chat_postMessage(
             channel=channel,
             text=message
         )
@@ -31,6 +33,7 @@ feed_urls = [
     "https://www.nature.com/ncomms.rss"
 ]
 
+# 각 RSS 피드를 반복하여 요약하고 슬랙에 전송
 for feed_url in feed_urls:
     feed = feedparser.parse(feed_url)
     for entry in feed.entries[:5]:  # 각 피드에서 5개 항목을 요약
