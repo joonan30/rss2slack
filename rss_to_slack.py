@@ -119,7 +119,7 @@ sent_links = load_sent_links()
 # 각 RSS 피드를 반복하여 조건에 맞는 경우만 요약 및 슬랙 전송
 for feed_url in feed_urls:
     feed = feedparser.parse(feed_url)
-    for entry in feed.entries[:5]:  # 피드에서 최대 5개 항목 요약
+    for entry in feed.entries[:100]:  # 피드에서 최대 5개 항목 요약
         # 이전에 전송한 링크 제외
         if entry.link in sent_links:
             print(f"Already sent: {entry.link}")
