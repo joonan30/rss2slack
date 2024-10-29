@@ -4,6 +4,7 @@ on:
   schedule:
     # 매일 아침 9시에 실행 (UTC 기준)
     - cron: '0 9 * * *'
+  workflow_dispatch:  # <-- 수동 실행 트리거 추가
 
 jobs:
   rss_to_slack:
