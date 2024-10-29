@@ -2,8 +2,8 @@ name: RSS to Slack
 
 on:
   schedule:
-    # 매일 아침 9시에 실행 (UTC 기준이므로, 한국 시간(KST)으로 18시에 실행됨)
-    - cron: '0 9 * * *'
+    # 15분마다 실행 (UTC 기준)
+    - cron: '*/15 * * * *'
 
 jobs:
   rss_to_slack:
