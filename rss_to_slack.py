@@ -17,9 +17,13 @@ keywords = [
     "single cell atlas",
     "autism",
     "whole genome sequencing",
-    "deep learning genomics",
+    "UK biobank",
     "oligogenic",
-    "foundation model genomics"
+    "scGPT",
+    "foundation model",
+    "single cell",
+    "neurodevelopmental",
+    "proteogenomics"
 ]
 
 # 제외할 제목 키워드 목록
@@ -54,9 +58,19 @@ def send_to_slack(channel, message):
     except SlackApiError as e:
         print(f"Error sending message: {e.response['error']}")
 
-# RSS 피드 URL 목록
+# 여러 RSS 피드 URL 목록
 feed_urls = [
-    "https://www.nature.com/ncomms.rss"
+    "https://www.nature.com/nature.rss",
+    "https://www.nature.com/nm.rss",
+    "http://www.nature.com/neuro/current_issue/rss/",
+    "http://www.nature.com/nrg/journal/vaop/ncurrent/rss.rdf",
+    "http://www.nature.com/nrn/current_issue/rss",
+    "https://www.science.org/action/showFeed?type=axatoc&feed=rss&jc=science",
+    "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=stm",
+    "https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=sciadv",
+    "https://genomebiology.biomedcentral.com/articles/most-recent/rss.xml",
+    "https://genomemedicine.biomedcentral.com/articles/most-recent/rss.xml",
+    "https://www.nature.com/natmachintell.rss"
 ]
 
 # 각 RSS 피드를 반복하여 조건에 맞는 경우만 요약 및 슬랙 전송
