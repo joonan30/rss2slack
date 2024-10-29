@@ -2,8 +2,8 @@ name: RSS to Slack
 
 on:
   schedule:
-    # 15분마다 실행 (UTC 기준)
-    - cron: '*/15 * * * *'
+    # 매일 아침 9시에 실행 (UTC 기준)
+    - cron: '0 9 * * *'
 
 jobs:
   rss_to_slack:
@@ -13,6 +13,8 @@ jobs:
       # 리포지토리 체크아웃
       - name: Check out the repository
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Python 설치
       - name: Set up Python
