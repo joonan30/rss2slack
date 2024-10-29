@@ -11,7 +11,7 @@ slack_token = os.getenv("SLACK_BOT_TOKEN")
 # 텍스트 요약 함수
 def summarize_text(text):
     response = openai.ChatCompletion.create(
-        model="gpt-4",  # gpt-4 모델을 사용
+        model="gpt-4o",  # gpt-4 모델을 사용
         messages=[{"role": "user", "content": f"Summarize this article: {text}"}],
         max_tokens=100  # 원하는 요약 길이에 맞게 조정
     )
