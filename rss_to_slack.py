@@ -16,11 +16,21 @@ client = WebClient(token=slack_token)
 # 필터링할 키워드 목록 (OR 조건)
 keywords = [
     "single cell atlas",
+    "single cell",
+    "multiomics",
+    "foundation model",
+    "whole-genome sequencing",
+    "WGS",
+    "proteogenomics",
+    "single-cell RNA",
+    "multiome",
+    "CPTAC",
     "autism",
     "whole genome sequencing",
     "deep learning genomics",
     "oligogenic",
-    "foundation model genomics"
+    "polygenic",
+    "deep learning model"
 ]
 
 # 제외할 제목 키워드 목록
