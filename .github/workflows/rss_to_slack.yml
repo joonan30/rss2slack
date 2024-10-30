@@ -25,16 +25,16 @@ jobs:
           pip install feedparser slack_sdk openai==0.28.0  # 특정 버전 설치 후 호환성 확인
           python -m pip show openai  # 설치된 openai 라이브러리 버전 확인
 
-      - name: Run the PubMed to Slack script
+      - name: Run the RSS to Slack script
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python pubmed_to_slack.py
+          python rss_to_slack.py
 
-      - name: Run the PubMed to Slack script
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          python pubmed_to_slack.py
+      # - name: Run the PubMed to Slack script
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      #   run: |
+      #     python pubmed_to_slack.py
