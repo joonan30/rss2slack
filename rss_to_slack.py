@@ -35,7 +35,7 @@ keywords = [
 ]
 
 # 제외할 제목 키워드 목록
-exclude_titles = ["Author Correction", "Publisher Correction"]
+exclude_titles = ["Author Correction", "Publisher Correction", "chickens", "C. elegans"]
 
 # 어제 날짜 생성
 yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
@@ -71,14 +71,18 @@ def send_to_slack(channel, message):
 
 # RSS 피드 URL 목록
 feed_urls = [
-    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=cancer_biology",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=bioinformatics",
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=cancer_biology",
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=cell_biology",
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=developmental_biology",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=genetics",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=genomics",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=molecular_biology",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=neuroscience",
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=pathology",
     "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=synthetic_biology",
-    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=systems_biology"
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=systems_biology",
+    "http://hwmaint.biorxiv.highwire.org/cgi/collection/rss?coll_alias=biochemistry"
 ]
 
 # 각 RSS 피드를 반복하여 조건에 맞는 경우만 요약 및 슬랙 전송
