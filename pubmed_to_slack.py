@@ -67,13 +67,13 @@ pubmed_feed_url = f"https://pubmed.ncbi.nlm.nih.gov/rss/search/1L5AT7N6rGvNm3bNU
 feed = feedparser.parse(pubmed_feed_url)
 for entry in feed.entries:
     # 저널 필터링: 지정한 저널 목록에 포함되지 않으면 제외
-    journal = entry.get("dc:source", "")
+    journal = entry.get("dc_source", "")
     if not is_desired_journal(journal):
         print(f"Excluded (not desired journal): {journal} - {entry.title}")
         continue
 
     # 초록을 요약 텍스트로 사용
-    abstract = entry.get("description", entry.get("content:encoded", ""))
+    abstract = entry.get("description") + '' + entry.get("content")[0]['value']
     summary_text = abstract if abstract else entry.get("summary", "")
     summary = summarize_text(summary_text)
     
