@@ -18,6 +18,7 @@ keywords = [
     "single cell atlas",
     "single cell",
     "multiomics",
+    "enhancer",
     "foundation model",
     "whole-genome sequencing",
     "WGS",
