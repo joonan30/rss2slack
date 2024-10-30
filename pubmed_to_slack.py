@@ -4,6 +4,7 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 import os
 from datetime import datetime, timedelta
+from urllib.parse import urlparse, urlunparse
 
 # 환경 변수에서 API 키 가져오기
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -77,6 +78,10 @@ for entry in feed.entries:
     summary_text = abstract if abstract else entry.get("summary", "")
     summary = summarize_text(summary_text)
     
+    # URL에서 query parameters 제거
+    parsed_url = urlparse(entry.link)
+    clean_url = urlunparse(parsed_url._replace(query=""))
+
     # 슬랙으로 메시지 전송
-    message = f"*{entry.title}*\n{summary}\n<{entry.link}>"
+    message = f"*{entry.title}*\n{summary}\n<{clean_url}>"
     send_to_slack("#paper_gpt", message)
